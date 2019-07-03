@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  global-redis:
+    build: ./docker-files
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '6379:6379'
+#    volumes:
+#      - ./data:/data
+#      - ./data/logs:/var/log/redis
