@@ -2,4 +2,4 @@
 #
 #
 portainer/data
-portainer/data/**/*
+portainer/data/**/**
