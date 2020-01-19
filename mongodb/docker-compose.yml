@@ -13,3 +13,12 @@ services:
     container_name: srv-mongodb
     ports:
       - 27017:27017
+    volumes:
+      - local-data:/data/db
+volumes:
+  local-data:
+    driver: local
+    driver_opts:
+      type: nfs
+      device: /dockers/mongodb/data
+      o: bind

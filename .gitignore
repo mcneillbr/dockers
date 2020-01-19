@@ -2,4 +2,6 @@
 #
 #
 portainer/data
-portainer/data/**/**
+portainer/data/**
+mongodb/data/**
+mysql/data/**
