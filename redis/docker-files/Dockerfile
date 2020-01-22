@@ -14,22 +14,18 @@ RUN chmod +x /bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/about
 
 RUN set -exo pipefail \
-  && apk add --no-cache --virtual .build-deps \
-    build-base \
-    linux-headers \
-    openssl \
-
-  && chmod +x /usr/local/bin/gosu \
-  && cd /tmp \
-  && tar xzf ${REDIS_VERSION}.tar.gz \
-  && cd /tmp/redis-${REDIS_VERSION} \
-  && make \
-  && make install \
-  && cp redis.conf /etc/redis.conf \
-  && sed -i -e 's/bind 127.0.0.1/bind 0.0.0.0/' /etc/redis.conf \
-  && adduser -D redis \
-  && apk del .build-deps \
-  && rm -rf /tmp/*
+    && apk add --no-cache --virtual .build-deps build-base linux-headers openssl \
+    && chmod +x /usr/local/bin/gosu \
+    && cd /tmp \
+    && tar xzf ${REDIS_VERSION}.tar.gz \
+    && cd /tmp/redis-${REDIS_VERSION} \
+    && make \
+    && make install \
+    && cp redis.conf /etc/redis.conf \
+    && sed -i -e 's/bind 127.0.0.1/bind 0.0.0.0/' /etc/redis.conf \
+    && adduser -D redis \
+    && apk del .build-deps \
+    && rm -rf /tmp/*
 
 EXPOSE 6379
 ENTRYPOINT ["/bin/entrypoint.sh"]
